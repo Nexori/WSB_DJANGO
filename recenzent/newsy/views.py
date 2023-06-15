@@ -10,4 +10,4 @@ def newsy(request):
 
 def newsy_detail(request, news_id):
     moje_newsy = Newsy.objects.get(id=news_id)
-    return render(request, 'newsy/newsy_detail.html', {'news': moje_newsy})
+    return render(request, 'newsy_detail.html', {'news': moje_newsy})

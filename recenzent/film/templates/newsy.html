@@ -2,28 +2,29 @@
 {% block content %}
 <head>
     <h1>Newsy w serwisie</h1>
-  </head>
+</head>
   
-  <body>
-    <div class = "container" >
+<body>
+    <div class="container">
     {% for news in newsy %}
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{news.naglowek}}</h5>
-                <small>{{news.data}}</small>
-            </div>
-            {% if news.tresc|length > 300 %}
-              <p class="mb-1">{{ news.tresc|slice:300 }}...</p>
-              <a href="{% url 'newsy_detail' news_item.id %}" >Read more</a>
-            {% else %}
-              <p class="mb-1">{{ news.tresc }}</p>
-            {% endif %}
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ news.naglowek }}</h5>
+                    <small>{{ news.data }}</small>
+                </div>
+                <p class="mb-1">
+                    {% if news.tresc|length > 300 %}
+                        {{ news.tresc|slice:":300" }}...
+                        <a href="{% url 'newsy_detail' news.id %}" class="btn btn-primary">Czytaj więcej</a>
+                    {% else %}
+                        {{ news.tresc }}
+                    {% endif %}
+                </p>
             </a>
         </div>
     {% endfor %}
     </div>    
-  </body>
-  
+</body>
 
-{%  endblock content %}
+{% endblock content %}
