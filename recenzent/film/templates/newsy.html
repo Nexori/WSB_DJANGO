@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <h1>Newsy w serwisie</h1>
+  </head>
+  
+  <body>
+    <div class = "container" >
+    {% for news in newsy %}
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{news.naglowek}}</h5>
+                <small>{{news.data}}</small>
+            </div>
+            {% if news.tresc|length > 300 %}
+              <p class="mb-1">{{ news.tresc|slice:300 }}...</p>
+              <a href="{% url 'newsy_detail' news_item.id %}" >Read more</a>
+            {% else %}
+              <p class="mb-1">{{ news.tresc }}</p>
+            {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+    </div>    
+  </body>
+  
+
+{%  endblock content %}
